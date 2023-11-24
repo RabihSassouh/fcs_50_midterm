@@ -1,4 +1,5 @@
-    #OpenTab
+tabs=[]
+#OpenTab
 #
 #
 def OpenTab():
@@ -6,8 +7,28 @@ def OpenTab():
     title=input("")
     print("Please enter the URL of the website: ")
     URL=input("")
+    dic={"Title":title,"URL":URL}
+    tabs.append(dic)
     print("You have just added a new website, ",title,"",URL)
-    
+    print(tabs)
+
+#CloseTab
+#
+#
+def CloseTab():
+    if len(tabs)==0:
+        print("there is no tabs to close!")
+    else:
+        print("Please enter the index of the tab you wish to close: ")
+        index=input("")
+        if 1<=int(index)<=len(tabs):
+            tabs.remove(index-1)
+            print("You have just closed the tab ",index-1)
+        else:
+            tabs.remove()
+            print("The index you entered is not available, the last tab has been closed!")
+    print(tabs)
+
 #MainMenu
 #
 #
@@ -28,6 +49,8 @@ def MainMenu():
         choice=int(input(""))
         if choice==1:
             OpenTab()
+        elif choice==2:
+            CloseTab()
         elif choice==9:
             print("Thank you for using our tabs simulation browser.")
 MainMenu()
