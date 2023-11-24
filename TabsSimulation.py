@@ -2,6 +2,11 @@
 #
 #
 def OpenTab():
+    print("Please enter the title of your website: ")
+    title=input("")
+    print("Please enter the URL of the website: ")
+    URL=input("")
+    print("You have just added a new website, ",title,"",URL)
     
 #MainMenu
 #
