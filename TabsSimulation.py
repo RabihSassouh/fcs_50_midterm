@@ -1,3 +1,5 @@
+#importing libraries necessary for url validation
+from urllib.parse import urlparse, urlsplit
 #importing libraries necessary for web scraping
 from selenium import webdriver
 from bs4 import BeautifulSoup
@@ -8,13 +10,23 @@ tabs=[]
 #
 #
 def OpenTab():
-    print("Please enter the title of your website: ")
-    title=input("")
-    print("Please enter the URL of the website: ")
-    URL=input("")
-    dic={"Title":title,"URL":URL}
-    tabs.append(dic)
-    print("You have just added a new website, ",title,"",URL)
+    while True:
+        print("Please enter the title of your website: ")
+        title=input("")
+        if not title.isalpha():
+            print("The title of a tab can only consists of letters and spaces!")
+            continue            
+        else:
+            print("Please enter the URL of the website: ")
+            URL=input("")
+            parsed_url= urlparse(URL)
+            if parsed_url.scheme and parsed_url.netloc:
+                dic={"Title":title,"URL":URL}
+                tabs.append(dic)
+                print("You have just added a new website, ",title,"",URL)
+            else:
+                print("Please enter a valid URL!")
+            break
     print(tabs)
 
 #CloseTab
