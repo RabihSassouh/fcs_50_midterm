@@ -13,7 +13,7 @@ def OpenTab():
     while True:
         print("Please enter the title of your website: ")
         title=input("")
-        if not title.isalpha():
+        if not title.isalpha(): #i should add or if space
             print("The title of a tab can only consists of letters and spaces!")
             continue            
         else:
@@ -21,6 +21,7 @@ def OpenTab():
             URL=input("")
             parsed_url= urlparse(URL)
             if parsed_url.scheme and parsed_url.netloc:
+                global dic
                 dic={"Title":title,"URL":URL}
                 tabs.append(dic)
                 print("You have just added a new website, ",title,"",URL)
@@ -46,6 +47,19 @@ def CloseTab():
             print("The index you entered is not available, the last opened tab has been closed!")
     print(tabs)
 
+#SwitchTab
+#
+#
+def SwitchTab():
+        print("Please enter the index of the tab that you want to display it's content: ")
+        display=int(input(""))
+        if len(tabs)==0:
+            print("There is no tabs to display!")
+        elif 1<=int(display)<=len(tabs):
+                url_displayed=[tabs[display]]
+                print(url_displayed)
+                
+    
 #MainMenu
 #
 #
@@ -68,6 +82,8 @@ def MainMenu():
             OpenTab()
         elif choice==2:
             CloseTab()
+        elif choice==3:
+            SwitchTab()
         elif choice==9:
             print("Thank you for using our tabs simulation browser.")
 MainMenu()
