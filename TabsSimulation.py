@@ -1,3 +1,8 @@
+#importing libraries necessary for web scraping
+from selenium import webdriver
+from bs4 import BeautifulSoup
+import pandas as pd
+
 tabs=[]
 #OpenTab
 #
@@ -25,8 +30,8 @@ def CloseTab():
             tabs.remove(index-1)
             print("You have just closed the tab ",index-1)
         else:
-            tabs.remove()
-            print("The index you entered is not available, the last tab has been closed!")
+            tabs.popitem()
+            print("The index you entered is not available, the last opened tab has been closed!")
     print(tabs)
 
 #MainMenu
