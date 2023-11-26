@@ -1,6 +1,7 @@
 #importing libraries necessary for url validation
 from urllib.parse import urlparse, urlsplit
 #importing libraries necessary for web scraping
+import requests
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -52,12 +53,17 @@ def CloseTab():
 #
 def SwitchTab():
         print("Please enter the index of the tab that you want to display it's content: ")
-        display=int(input(""))
+        display=int(input(""))-1
         if len(tabs)==0:
             print("There is no tabs to display!")
-        elif 1<=int(display)<=len(tabs):
-                url_displayed=[tabs[display]]
-                print(url_displayed)
+        elif 0<=int(display)<=len(tabs):
+                url_displayed=tabs[display]['URL']
+                reqs= requests.get(url_displayed)
+                soup= BeautifulSoup(reqs.text, 'html.parser')
+                for link in soup.find_all():
+                    print(link.get('href'))
+                    
+                
                 
     
 #MainMenu
