@@ -165,11 +165,11 @@ def SaveTabs(): #O(n**2)
 #ImportTabs
 #params:none
 #the function that permits the user to import tabs from a file path where they are saved before as json file
-def ImportTabs():
+def ImportTabs():   #O(n*m)
     print("Please provide the file path you want to load tabs from it: ")
     file_path=input("")
-    if os.path.exists(file_path):
-        with open('midterm.json',"r") as f:
+    if os.path.exists(file_path):   #O(n), where n is len(file_path)
+        with open('midterm.json',"r") as f: #O(m) 
             tabs_json=json.load(f)
         print(tabs_json)
         print("File loaded")
