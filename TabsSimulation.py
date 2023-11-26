@@ -63,7 +63,12 @@ def SwitchTab():
                 for link in soup.find_all():
                     print(link.get('href'))
                     
-                
+#DisplayAll
+#
+#
+def DisplayAll():
+    for i in range(len(tabs)):
+        print(tabs[i]['Title'])                
                 
     
 #MainMenu
@@ -90,6 +95,8 @@ def MainMenu():
             CloseTab()
         elif choice==3:
             SwitchTab()
+        elif choice==4:
+            DisplayAll()
         elif choice==9:
             print("Thank you for using our tabs simulation browser.")
 MainMenu()
