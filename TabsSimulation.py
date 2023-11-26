@@ -11,6 +11,7 @@ import json
 import os.path
 import pathlib
 tabs=[]
+tabs_unsorted=[]
 #OpenTab
 #
 #
@@ -29,6 +30,7 @@ def OpenTab():
                 global dic
                 dic={"Title":title,"URL":URL, "NestedTabs":[]}
                 tabs.append(dic)
+                tabs_unsorted.append(dic)
                 print("You have just added a new website, ",title,"",URL)
             else:
                 print("Please enter a valid URL!")
@@ -47,10 +49,11 @@ def CloseTab():
         if 1<=int(index)<=len(tabs):
             tabs.remove(index-1)
             print("You have just closed the tab ",index-1)
+            print(tabs)
         else:
-            tabs.popitem()
+            tabs_unsorted.pop()
             print("The index you entered is not available, the last opened tab has been closed!")
-    print(tabs)
+            print(tabs_unsorted)
 
 #SwitchTab
 #
