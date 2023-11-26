@@ -105,23 +105,23 @@ def DisplayAll():
 #OpenNested
 #params:none
 #the function that permits the user to add a nested tab inside a main tab
-def OpenNested():
+def OpenNested(): #O(n*m*k)
     print("Please enter the index of the tab that you want to add a nested tab to: ")
     index=int(input(""))-1
-    while 0>index or index>=len(tabs):
+    while 0>index or index>=len(tabs):  #O(n), where n is len(tabs)
         print("Please enter a valid index!")
     else:
         while True:
             print("Please enter the title of the nested tab you want to add: ")
             title1=input("")    
-            if not all([letter.isalpha() or letter.isspace() for letter in title1]):
+            if not all([letter.isalpha() or letter.isspace() for letter in title1]):    #O(m), where m is len(title1)
                 print("The title of a tab can only consists of letters and spaces!")
                 continue
-            else:
+            else:   #O(m)
                 print("Please enter the contents of: ",title1)
                 url1=input("")
                 parsed_url= urlparse(url1)
-                if parsed_url.scheme and parsed_url.netloc:
+                if parsed_url.scheme and parsed_url.netloc: #O(k)
                     tabs[index-1]["NestedTabs"].append(dic)
                     print("You have just added a new nested tab")
                     print(dic)
