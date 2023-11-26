@@ -17,8 +17,8 @@ tabs=[]
 tabs_unsorted=[]
 
 #OpenTab
-#
-#
+#params:none
+#the function that permits the user to add a new tab
 def OpenTab():
     while True:
         print("Please enter the title of your website: ")
@@ -42,8 +42,8 @@ def OpenTab():
     print(tabs)
 
 #CloseTab
-#
-#
+#params:none
+#the function that permits the user to close a tab
 def CloseTab():
     if len(tabs)==0:
         print("there is no tabs to close!")
@@ -60,8 +60,8 @@ def CloseTab():
             print(tabs_unsorted)
 
 #SwitchTab
-#
-#
+#params:none
+#the function that permits the user to display the contents of the desired tab
 def SwitchTab():
         print("Please enter the index of the tab that you want to display it's content: ")
         display=int(input(""))-1
@@ -81,8 +81,8 @@ def SwitchTab():
                 print('Content of the website\n', reqs.content[:2000])
                     
 #DisplayAll
-#
-#
+#params:none
+#the function that permits the user to display the titles of all opened tabs
 def DisplayAll():
     for i in range(len(tabs)):
         print(tabs[i]['Title'])
@@ -102,8 +102,8 @@ def DisplayAll():
             print(result)
 
 #OpenNested
-#
-#
+#params:none
+#the function that permits the user to add a nested tab inside a main tab
 def OpenNested():
     print("Please enter the index of the tab that you want to add a nested tab to: ")
     index=int(input(""))-1
@@ -130,8 +130,8 @@ def OpenNested():
             
             
 #SortAll
-#
-#
+#params:none
+#the function that helps the user to sort all the tabs by the title's of the tab alphabatical order 
 def SortAll():
     border=0
     while border<len(tabs)-1:
@@ -147,8 +147,8 @@ def SortAll():
     print(tabs)
     
 #SaveTabs
-#
-#
+#params:none
+#the function that permits the user to save the tabs to a file path as json file
 def SaveTabs():
     print("Please provide the file path you want to save your tabs in it: ")
     file_path=input("")
@@ -162,8 +162,8 @@ def SaveTabs():
         print("The file path you entered doesn't exist! Please enter a valid file path.")
         
 #ImportTabs
-#
-#
+#params:none
+#the function that permits the user to import tabs from a file path where they are saved before as json file
 def ImportTabs():
     print("Please provide the file path you want to load tabs from it: ")
     file_path=input("")
@@ -175,8 +175,8 @@ def ImportTabs():
     else:
         print("The file path you entered doesn't exist! Please enter a valid file path.")
 #MainMenu
-#
-#
+#params: none
+#the function that will run the main page
 def MainMenu():
     choice=0
     while choice != 9:
