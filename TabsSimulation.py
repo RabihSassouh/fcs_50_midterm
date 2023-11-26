@@ -10,8 +10,12 @@ import json
 #importing libraries necessary to check file path
 import os.path
 import pathlib
+#importing librarie necessary to display nested tabs as hierarchy
+import itertools
+
 tabs=[]
 tabs_unsorted=[]
+
 #OpenTab
 #
 #
@@ -81,7 +85,21 @@ def SwitchTab():
 #
 def DisplayAll():
     for i in range(len(tabs)):
-        print(tabs[i]['Title'])                
+        print(tabs[i]['Title'])
+        def flatten_hierarchy(relations, parent=tabs):
+            try:
+                children= relations[parent]
+            except KeyError:
+                return None
+            result=[]
+            for child in children:
+                sub_hierarchy= flatten_hierarchy(relations, child)
+                try:
+                    for element in sub_hierarchy:
+                        result.append(tuple(itertools.chain([parent],element)))
+                except TypeError:
+                    result.append((parent,child))
+            print(result)
 
 #OpenNested
 #
@@ -94,8 +112,8 @@ def OpenNested():
     else:
         while True:
             print("Please enter the title of the nested tab you want to add: ")
-            title1=input("")
-            if not title1.isalpha(): #i should add or if space
+            title1=input("")    
+            if not all([letter.isalpha() or letter.isspace() for letter in title1]):
                 print("The title of a tab can only consists of letters and spaces!")
                 continue
             else:
