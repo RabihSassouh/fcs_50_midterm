@@ -150,12 +150,12 @@ def SortAll():  #O(m*n**2)
 #SaveTabs
 #params:none
 #the function that permits the user to save the tabs to a file path as json file
-def SaveTabs():
+def SaveTabs(): #O(n**2)
     print("Please provide the file path you want to save your tabs in it: ")
     file_path=input("")
     tabs_json=json.dumps(tabs)
-    if os.path.exists(file_path):
-        with open(file_path,"w") as outfile:
+    if os.path.exists(file_path): #O(n) where n is the len(file_path)
+        with open(file_path,"w") as outfile: #O(n)
             outfile.write(tabs_json)
             print("Saved")
             print(tabs_json)
