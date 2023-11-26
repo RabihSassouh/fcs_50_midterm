@@ -135,7 +135,15 @@ def SaveTabs():
 #
 #
 def ImportTabs():
-    json.load
+    print("Please provide the file path you want to load tabs from it: ")
+    file_path=input("")
+    if os.path.exists(file_path):
+        with open('midterm.json',"r") as f:
+            tabs_json=json.load(f)
+        print(tabs_json)
+        print("File loaded")
+    else:
+        print("The file path you entered doesn't exist! Please enter a valid file path.")
 #MainMenu
 #
 #
