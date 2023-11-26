@@ -133,13 +133,13 @@ def OpenNested(): #O(n*m*k)
 #SortAll
 #params:none
 #the function that helps the user to sort all the tabs by the title's of the tab alphabatical order 
-def SortAll():
+def SortAll():  #O(m*n**2)
     border=0
-    while border<len(tabs)-1:
+    while border<len(tabs)-1:   #O(n), where n is len(tabs)
         minindex=border
-        for i in range(border+1,len(tabs)):
+        for i in range(border+1,len(tabs)): #O(n)
             tabs[i]['Title']=tabs[i]['Title'].lower()
-            if tabs[i]['Title']<tabs[minindex]['Title']:
+            if tabs[i]['Title']<tabs[minindex]['Title']:#O(m) , where m is len(Title)
                 minindex=i
         temp=tabs[border]['Title'] 
         tabs[border]['Title']=tabs[minindex]['Title']
