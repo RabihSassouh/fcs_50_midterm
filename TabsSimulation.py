@@ -69,8 +69,27 @@ def SwitchTab():
 def DisplayAll():
     for i in range(len(tabs)):
         print(tabs[i]['Title'])                
-                
-    
+
+#OpenNested
+#
+#
+def OpenNested():
+    print("Please enter the index of the tab that you want to add a nested tab to: ")
+    index=int(input(""))-1
+    while 0>index or index>=len(tabs):
+        print("Please enter a valid index!")
+    else:
+        while True:
+            print("Please enter the title of the nested tab you want to add: ")
+            title1=input("")
+            if not title1.isalpha(): #i should add or if space
+                print("The title of a tab can only consists of letters and spaces!")
+                continue
+            else:
+                print("Please enter the contents of: ",title1)
+                content=input("")
+                break
+            
 #MainMenu
 #
 #
@@ -97,6 +116,8 @@ def MainMenu():
             SwitchTab()
         elif choice==4:
             DisplayAll()
+        elif choice==5:
+            OpenNested()
         elif choice==9:
             print("Thank you for using our tabs simulation browser.")
 MainMenu()
