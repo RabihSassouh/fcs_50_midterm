@@ -123,12 +123,11 @@ def OpenNested(): #O(n*m*k)
                 parsed_url= urlparse(url1)
                 if parsed_url.scheme and parsed_url.netloc: #O(k)
                     tabs[index-1]["NestedTabs"].append(dic)
-                    print("You have just added a new nested tab")
+                    print("You have just added a new nested tab") #O(1)
                     print(dic)
                 else:
                     print("Please enter a valid URL!")
                 break
-            
             
 #SortAll
 #params:none
