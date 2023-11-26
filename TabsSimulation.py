@@ -5,7 +5,11 @@ import requests
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import pandas as pd
-
+#importing json
+import json
+#importing libraries necessary to check file path
+import os.path
+import pathlib
 tabs=[]
 #OpenTab
 #
@@ -106,6 +110,26 @@ def SortAll():
         tabs[minindex]['Title']=temp
         border+=1
     print(tabs)
+    
+#SaveTabs
+#
+#
+def SaveTabs():
+    for i in range (len(tabs)):
+        tabs_json=json.dumps(tabs[i])
+    print("Please provide the file path you want to save your tabs in it: ")
+    file_path=input("")
+    with open(file_path,"w") as outfile:
+        outfile.write(tabs_json)
+        print("Saved")
+    #We can check if the path entered by the user exists or not:
+        # if os.path.exists(file_path):
+        #     with open(file_path,"w") as outfile:
+        #         outfile.write(tabs_json)
+        #         print("Saved")
+        # else:
+        #     print("The file path you entered doesn't exist! Please enter a valid file path.")
+        
 #MainMenu
 #
 #
@@ -136,6 +160,8 @@ def MainMenu():
             OpenNested()
         elif choice==6:
             SortAll()
+        elif choice==7:
+            SaveTabs()
         elif choice==9:
             print("Thank you for using our tabs simulation browser.")
 MainMenu()
