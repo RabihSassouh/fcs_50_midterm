@@ -18,16 +18,16 @@ def OpenTab():
     while True:
         print("Please enter the title of your website: ")
         title=input("")
-        if not title.isalpha(): #i should add or if space
+        if not all([letter.isalpha() or letter.isspace() for letter in title]):
             print("The title of a tab can only consists of letters and spaces!")
-            continue            
+            continue           
         else:
             print("Please enter the URL of the website: ")
             URL=input("")
             parsed_url= urlparse(URL)
             if parsed_url.scheme and parsed_url.netloc:
                 global dic
-                dic={"Title":title,"URL":URL}
+                dic={"Title":title,"URL":URL, "NestedTabs":[]}
                 tabs.append(dic)
                 print("You have just added a new website, ",title,"",URL)
             else:
@@ -91,8 +91,16 @@ def OpenNested():
                 continue
             else:
                 print("Please enter the contents of: ",title1)
-                content=input("")
+                url1=input("")
+                parsed_url= urlparse(url1)
+                if parsed_url.scheme and parsed_url.netloc:
+                    tabs[index-1]["NestedTabs"].append(dic)
+                    print("You have just added a new nested tab")
+                    print(dic)
+                else:
+                    print("Please enter a valid URL!")
                 break
+            
             
 #SortAll
 #
