@@ -90,6 +90,22 @@ def OpenNested():
                 content=input("")
                 break
             
+#SortAll
+#
+#
+def SortAll():
+    border=0
+    while border<len(tabs)-1:
+        minindex=border
+        for i in range(border+1,len(tabs)):
+            tabs[i]['Title']=tabs[i]['Title'].lower()
+            if tabs[i]['Title']<tabs[minindex]['Title']:
+                minindex=i
+        temp=tabs[border]['Title'] 
+        tabs[border]['Title']=tabs[minindex]['Title']
+        tabs[minindex]['Title']=temp
+        border+=1
+    print(tabs)
 #MainMenu
 #
 #
@@ -118,6 +134,8 @@ def MainMenu():
             DisplayAll()
         elif choice==5:
             OpenNested()
+        elif choice==6:
+            SortAll()
         elif choice==9:
             print("Thank you for using our tabs simulation browser.")
 MainMenu()
