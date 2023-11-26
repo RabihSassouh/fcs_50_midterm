@@ -49,10 +49,10 @@ def CloseTab():
         print("there is no tabs to close!")
     else:
         print("Please enter the index of the tab you wish to close: ")
-        index=input("")
-        if 1<=int(index)<=len(tabs):
-            tabs.remove(index-1)
-            print("You have just closed the tab ",index-1)
+        index=int(input(""))-1
+        if 0<=int(index)<len(tabs):
+            tabs.pop(index)
+            print("You have just closed the tab ",index+1)
             print(tabs)
         else:
             tabs_unsorted.pop()
@@ -67,7 +67,7 @@ def SwitchTab():
         display=int(input(""))-1
         if len(tabs)==0:
             print("There is no tabs to display!")
-        elif 0<=int(display)<=len(tabs)-1:
+        elif 0<=int(display)<len(tabs):
             url_displayed=tabs[display]['URL']
             reqs= requests.get(url_displayed)
             soup= BeautifulSoup(reqs.text, 'html.parser')
@@ -152,19 +152,14 @@ def SortAll():
 def SaveTabs():
     print("Please provide the file path you want to save your tabs in it: ")
     file_path=input("")
-    # with open(file_path,"w") as outfile:
-    #     outfile.write(tabs_json)
-    #     print("Saved")
-    # We can check if the path entered by the user exists or not:
-    for i in range (len(tabs)):
-        tabs_json=json.dumps(tabs[i])
-        if os.path.exists(file_path):
-            with open(file_path,"w") as outfile:
-                outfile.write(tabs_json)
-                print("Saved")
-                print(tabs_json)
-        else:
-            print("The file path you entered doesn't exist! Please enter a valid file path.")
+    tabs_json=json.dumps(tabs)
+    if os.path.exists(file_path):
+        with open(file_path,"w") as outfile:
+            outfile.write(tabs_json)
+            print("Saved")
+            print(tabs_json)
+    else:
+        print("The file path you entered doesn't exist! Please enter a valid file path.")
         
 #ImportTabs
 #
@@ -215,4 +210,7 @@ def MainMenu():
             ImportTabs()
         elif choice==9:
             print("Thank you for using our tabs simulation browser.")
-MainMenu()
+try:
+    MainMenu()
+except:
+    print("invalid input!")
