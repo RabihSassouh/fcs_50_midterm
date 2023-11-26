@@ -140,8 +140,8 @@ def SortAll():  #O(m*n**2)
             tabs[i]['Title']=tabs[i]['Title'].lower()
             if tabs[i]['Title']<tabs[minindex]['Title']:#O(m) , where m is len(Title)
                 minindex=i
-        temp=tabs[border]['Title'] 
-        tabs[border]['Title']=tabs[minindex]['Title']
+        temp=tabs[border]['Title']  #O(1)
+        tabs[border]['Title']=tabs[minindex]['Title'] #O(1)
         tabs[minindex]['Title']=temp
         border+=1
     print(tabs)
