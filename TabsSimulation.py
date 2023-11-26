@@ -35,7 +35,7 @@ def OpenTab(): #O(n*m)
                 dic={"Title":title,"URL":URL, "NestedTabs":[]}
                 tabs.append(dic)    #O(1)
                 tabs_unsorted.append(dic)   #O(1)
-                print("You have just added a new website, ",title,"",URL)   #O(1)
+                print("You have just added a new website,",title,"",URL)   #O(1)
             else:
                 print("Please enter a valid URL!")  #O(1)
             break
