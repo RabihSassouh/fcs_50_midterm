@@ -63,12 +63,18 @@ def SwitchTab():
         display=int(input(""))-1
         if len(tabs)==0:
             print("There is no tabs to display!")
-        elif 0<=int(display)<=len(tabs):
-                url_displayed=tabs[display]['URL']
-                reqs= requests.get(url_displayed)
-                soup= BeautifulSoup(reqs.text, 'html.parser')
-                for link in soup.find_all():
-                    print(link.get('href'))
+        elif 0<=int(display)<=len(tabs)-1:
+            url_displayed=tabs[display]['URL']
+            reqs= requests.get(url_displayed)
+            soup= BeautifulSoup(reqs.text, 'html.parser')
+            for link in soup.find_all():
+                print('Content of the website\n', reqs.content[:2000])
+        else:
+            url_displayed=tabs_unsorted[-1]['URL']
+            reqs= requests.get(url_displayed)
+            soup= BeautifulSoup(reqs.text, 'html.parser')
+            for link in soup.find_all():
+                print('Content of the website\n', reqs.content[:2000])
                     
 #DisplayAll
 #
