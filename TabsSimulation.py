@@ -119,17 +119,22 @@ def SaveTabs():
         tabs_json=json.dumps(tabs[i])
     print("Please provide the file path you want to save your tabs in it: ")
     file_path=input("")
-    with open(file_path,"w") as outfile:
-        outfile.write(tabs_json)
-        print("Saved")
-    #We can check if the path entered by the user exists or not:
-        # if os.path.exists(file_path):
-        #     with open(file_path,"w") as outfile:
-        #         outfile.write(tabs_json)
-        #         print("Saved")
-        # else:
-        #     print("The file path you entered doesn't exist! Please enter a valid file path.")
+    # with open(file_path,"w") as outfile:
+    #     outfile.write(tabs_json)
+    #     print("Saved")
+    # We can check if the path entered by the user exists or not:
+    if os.path.exists(file_path):
+        with open(file_path,"w") as outfile:
+            outfile.write(tabs_json)
+            print("Saved")
+    else:
+        print("The file path you entered doesn't exist! Please enter a valid file path.")
         
+#ImportTabs
+#
+#
+def ImportTabs():
+    json.load
 #MainMenu
 #
 #
@@ -162,6 +167,8 @@ def MainMenu():
             SortAll()
         elif choice==7:
             SaveTabs()
+        elif choice==8:
+            ImportTabs()
         elif choice==9:
             print("Thank you for using our tabs simulation browser.")
 MainMenu()
