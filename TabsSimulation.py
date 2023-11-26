@@ -93,7 +93,7 @@ def DisplayAll():
             except KeyError:
                 return None
             result=[]
-            for child in children:
+            for child in children:  #O(n), n is len(children)
                 sub_hierarchy= flatten_hierarchy(relations, child)
                 try:
                     for element in sub_hierarchy:
@@ -177,6 +177,7 @@ def ImportTabs():   #O(n*m)
 #MainMenu
 #params: none
 #the function that will run the main page
+
 def MainMenu():
     choice=0
     while choice != 9:
