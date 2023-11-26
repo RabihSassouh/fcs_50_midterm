@@ -99,7 +99,7 @@ def DisplayAll():
                     for element in sub_hierarchy:
                         result.append(tuple(itertools.chain([parent],element)))
                 except TypeError:
-                    result.append((parent,child))
+                    result.append(parent,child)
             print(result)
 
 #OpenNested
