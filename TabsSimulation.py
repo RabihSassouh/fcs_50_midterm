@@ -19,38 +19,38 @@ tabs_unsorted=[]
 #OpenTab
 #params:none
 #the function that permits the user to add a new tab
-def OpenTab():
+def OpenTab(): #O(n*m)
     while True:
         print("Please enter the title of your website: ")
         title=input("")
-        if not all([letter.isalpha() or letter.isspace() for letter in title]):
+        if not all([letter.isalpha() or letter.isspace() for letter in title]): #O(n),where n is the len(title)
             print("The title of a tab can only consists of letters and spaces!")
             continue           
-        else:
+        else: #O(n)
             print("Please enter the URL of the website: ")
             URL=input("")
             parsed_url= urlparse(URL)
-            if parsed_url.scheme and parsed_url.netloc:
+            if parsed_url.scheme and parsed_url.netloc: #O(m), where m is the len(URL)
                 global dic
                 dic={"Title":title,"URL":URL, "NestedTabs":[]}
-                tabs.append(dic)
-                tabs_unsorted.append(dic)
-                print("You have just added a new website, ",title,"",URL)
+                tabs.append(dic)    #O(1)
+                tabs_unsorted.append(dic)   #O(1)
+                print("You have just added a new website, ",title,"",URL)   #O(1)
             else:
-                print("Please enter a valid URL!")
+                print("Please enter a valid URL!")  #O(1)
             break
     print(tabs)
 
 #CloseTab
 #params:none
 #the function that permits the user to close a tab
-def CloseTab():
-    if len(tabs)==0:
+def CloseTab(): #O(n)
+    if len(tabs)==0:    #O(1)
         print("there is no tabs to close!")
     else:
         print("Please enter the index of the tab you wish to close: ")
         index=int(input(""))-1
-        if 0<=int(index)<len(tabs):
+        if 0<=int(index)<len(tabs): #O(n),where n is the len(tabs)
             tabs.pop(index)
             print("You have just closed the tab ",index+1)
             print(tabs)
@@ -62,22 +62,22 @@ def CloseTab():
 #SwitchTab
 #params:none
 #the function that permits the user to display the contents of the desired tab
-def SwitchTab():
+def SwitchTab(): #O(n*m)
         print("Please enter the index of the tab that you want to display it's content: ")
         display=int(input(""))-1
         if len(tabs)==0:
             print("There is no tabs to display!")
-        elif 0<=int(display)<len(tabs):
+        elif 0<=int(display)<len(tabs): #O(n), where n is the len(tabs)
             url_displayed=tabs[display]['URL']
             reqs= requests.get(url_displayed)
             soup= BeautifulSoup(reqs.text, 'html.parser')
-            for link in soup.find_all():
+            for link in soup.find_all():    #O(m)
                 print('Content of the website\n', reqs.content[:2000])
-        else:
+        else:   #O(n)
             url_displayed=tabs_unsorted[-1]['URL']
             reqs= requests.get(url_displayed)
             soup= BeautifulSoup(reqs.text, 'html.parser')
-            for link in soup.find_all():
+            for link in soup.find_all():    #O(m)
                 print('Content of the website\n', reqs.content[:2000])
                     
 #DisplayAll
@@ -86,6 +86,7 @@ def SwitchTab():
 def DisplayAll():
     for i in range(len(tabs)):
         print(tabs[i]['Title'])
+        #I found the function flatten_hierarchy on https://stackoverflow.com/questions/44236188/python-create-hierarchy-file-find-paths-from-root-to-leaves-in-tree-represent
         def flatten_hierarchy(relations, parent=tabs):
             try:
                 children= relations[parent]
